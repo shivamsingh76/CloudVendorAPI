@@ -1,6 +1,7 @@
 package com.shivamsingh.restdemo.controller;
 
 import com.shivamsingh.restdemo.model.CloudVendor;
+import com.shivamsingh.restdemo.model.Customer;
 import com.shivamsingh.restdemo.response.ResponseHandler;
 import com.shivamsingh.restdemo.service.CloudVendorService;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,16 @@ public class CloudVendorController {
     @DeleteMapping("/{vendorId}")
     public String deleteVendor(@PathVariable("vendorId") String vendorId) {
         return cloudVendorService.deleteCloudVendor(vendorId);
+    }
+
+    @PatchMapping("/{vendorId}/customers")
+    public ResponseEntity<Object> aquireCustomer(
+            @PathVariable("vendorId") String vendorId, @RequestBody Customer customer) {
+
+        return ResponseHandler.handleResponse(
+                cloudVendorService.aquireCustomer(vendorId, customer),
+                "Customer successfully aquired by cloud vendor.",
+                HttpStatus.OK);
     }
 
 }

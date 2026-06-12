@@ -1,6 +1,7 @@
 package com.shivamsingh.restdemo.service;
 
 import com.shivamsingh.restdemo.model.CloudVendor;
+import com.shivamsingh.restdemo.model.Customer;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CloudVendorService {
     public String updateCloudVendor(CloudVendor cloudVendor);
 
     public String deleteCloudVendor(String vendorId);
+
+    public CloudVendor aquireCustomer(String vendorId, Customer customer);
 }

@@ -1,8 +1,9 @@
 package com.shivamsingh.restdemo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="cloud_vendor_info")
@@ -11,6 +12,14 @@ public class CloudVendor {
     @Id
     private String vendorId;
     private String vendorName, vendorAddress, vendorContactNumber;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "cloud_vendor_customer",
+            joinColumns = @JoinColumn(name = "vendor_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id")
+    )
+    private Set<Customer> customers;
 
     public CloudVendor() {
     }
@@ -52,5 +61,13 @@ public class CloudVendor {
 
     public void setVendorContactNumber(String vendorContactNumber) {
         this.vendorContactNumber = vendorContactNumber;
+    }
+
+    public Set<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
 }

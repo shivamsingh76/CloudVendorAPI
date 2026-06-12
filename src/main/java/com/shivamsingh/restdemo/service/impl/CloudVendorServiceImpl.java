@@ -2,6 +2,7 @@ package com.shivamsingh.restdemo.service.impl;
 
 import com.shivamsingh.restdemo.exception.CloudVendorNotFoundException;
 import com.shivamsingh.restdemo.model.CloudVendor;
+import com.shivamsingh.restdemo.model.Customer;
 import com.shivamsingh.restdemo.repository.CloudVendorRepository;
 import com.shivamsingh.restdemo.service.CloudVendorService;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,21 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     public String deleteCloudVendor(String vendorId) {
         cloudVendorRepository.deleteById(vendorId);
         return "Cloud Vendor deleted from DB.";
+    }
+
+    @Override
+    public CloudVendor aquireCustomer(String vendorId, Customer customer) {
+
+         if (cloudVendorRepository.findById(vendorId).isEmpty())
+             throw new CloudVendorNotFoundException("Requested cloud vendor not found");
+
+        CloudVendor cloudVendor = cloudVendorRepository.findById(vendorId).get();
+
+        cloudVendor.getCustomers().add(customer);
+        customer.getCloudVendors().add(cloudVendor);
+
+        cloudVendorRepository.save(cloudVendor);
+
+        return cloudVendor;
     }
 }
