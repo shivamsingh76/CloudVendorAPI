@@ -1,10 +1,13 @@
 package com.shivamsingh.restdemo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +19,8 @@ public class Customer {
     private String name;
 
     @ManyToMany(mappedBy = "customers")
-    private Set<CloudVendor> cloudVendors;
+    @JsonIgnore
+    private Set<CloudVendor> cloudVendors = new HashSet<>();
 
     public String getId() {
         return id;

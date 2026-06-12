@@ -2,7 +2,7 @@ package com.shivamsingh.restdemo.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,7 +19,7 @@ public class CloudVendor {
             joinColumns = @JoinColumn(name = "vendor_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id")
     )
-    private Set<Customer> customers;
+    private Set<Customer> customers = new HashSet<>();
 
     public CloudVendor() {
     }
