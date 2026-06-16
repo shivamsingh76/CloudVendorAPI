@@ -12,3 +12,8 @@ spring:
 
   #JPA Settings
   jpa.hibernate.ddl_auto: update
+
+  security.user:
+      name: shivam
+      password: password
+
