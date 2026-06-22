@@ -6,16 +6,16 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class Users {
     @Id
     private long userId;
     private String username;
     private String password;
 
-    public User() {
+    public Users() {
     }
 
-    public User(long userId, String username, String password) {
+    public Users(long userId, String username, String password) {
         this.userId = userId;
         this.username = username;
         this.password = password;

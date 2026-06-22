@@ -1,6 +1,6 @@
 package com.shivamsingh.restdemo.service.impl;
 
-import com.shivamsingh.restdemo.model.User;
+import com.shivamsingh.restdemo.model.Users;
 import com.shivamsingh.restdemo.model.UserPrinciple;
 import com.shivamsingh.restdemo.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Users> user = userRepository.findByUsername(username);
 
         if(user.isEmpty()) {
             System.out.println("User not found.");

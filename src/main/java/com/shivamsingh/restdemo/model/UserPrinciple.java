@@ -10,9 +10,9 @@ import java.util.List;
 
 public class UserPrinciple implements UserDetails {
 
-    private final User user;
+    private final Users user;
 
-    public UserPrinciple(User user) {
+    public UserPrinciple(Users user) {
         this.user = user;
     }
 
