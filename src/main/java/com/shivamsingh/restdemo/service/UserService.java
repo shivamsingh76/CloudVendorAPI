@@ -8,4 +8,6 @@ public interface UserService {
     List<Users> getAllUsers();
 
     Users registerUser(Users user);
+
+    String loginUser(Users user);
 }

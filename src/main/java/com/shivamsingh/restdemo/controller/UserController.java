@@ -21,8 +21,15 @@ public class UserController {
         return ResponseHandler.handleResponse(userService.getAllUsers(), "Users fetched successfully.", HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/signup")
     public ResponseEntity<Object> registerUser(@RequestBody Users user) {
         return ResponseHandler.handleResponse(userService.registerUser(user), "User registeration successful.", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> loginUser(@RequestBody Users user) {
+        return ResponseHandler.handleResponse(userService.loginUser(user),
+                "User login successful.",
+                HttpStatus.OK);
     }
 }
