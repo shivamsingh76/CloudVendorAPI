@@ -28,7 +28,7 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
-        httpSecurity
+        return httpSecurity
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request ->
                         request
@@ -37,10 +37,11 @@ public class SpringSecurity {
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
 //                .formLogin(Customizer.withDefaults());
 
-        return httpSecurity.build();
+//        return httpSecurity.build();
     }
 
     @Bean
